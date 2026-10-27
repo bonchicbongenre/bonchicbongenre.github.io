@@ -14,6 +14,7 @@ own size -- a number that is part of what it counts.
 Standard library only. Runs from anywhere; the page is the one beside this directory.
 """
 import datetime
+import os
 import pathlib
 import re
 import shutil
@@ -31,6 +32,13 @@ def served(name):
     """the front page of a name as served, decompressed (urllib asks for no compression)"""
     with urllib.request.urlopen(urllib.request.Request("https://%s/" % name, headers=UA), timeout=30) as r:
         return r.read()
+
+
+def wrong(what):
+    """a failure, said so that GitHub shows it on the run's own page"""
+    if os.environ.get("GITHUB_ACTIONS"):
+        print("::error title=wall::" + what)
+    return 1
 
 
 def names_of(html):
@@ -60,14 +68,17 @@ def main():
         name, stated = m.group(1), int(m.group(2).replace(",", ""))
         actual = len(page) if name in names else len(served(name))
         ok = stated == actual
-        bad += not ok
         print("%-30s states %7s  %s %7s  %s" % (name, "{:,}".format(stated), "is its own" if name in names else "served",
                                                  "{:,}".format(actual), "ok" if ok else "WRONG"))
+        if not ok:
+            bad += wrong("%s states %s bytes; %s %s. Run: python3 .github/wall.py --fix <door repos>" % (
+                name, "{:,}".format(stated), "the page is" if name in names else "it serves", "{:,}".format(actual)))
     if "--live" in args:
         for name in names:
             same = served(name) == page
-            bad += not same
             print("%-30s serves this page: %s" % (name, "yes" if same else "NO"))
+            if not same:
+                bad += wrong("%s does not serve this page" % name)
     if "--fix" in args:
         def measured(m):
             if m.group(1) in names:
