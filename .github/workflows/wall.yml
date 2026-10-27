@@ -1,0 +1,17 @@
+name: wall
+# Every size on the wall is checked against what is served: on each push, and each
+# morning, since the sites change on their own schedules.
+on:
+  push:
+  schedule:
+    - cron: "17 7 * * *"
+  workflow_dispatch:
+jobs:
+  sizes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/wall.py
+      # the names serve this page only once a push has been deployed, so the daily run checks them
+      - if: github.event_name != 'push'
+        run: python3 .github/wall.py --live

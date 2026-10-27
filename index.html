@@ -26,20 +26,20 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 <body>
 <main>
 <h1>It&rsquo;s all in the name.</h1>
-<!-- dimensions: each site's front page as served, measured 2026-10-27 06:10 UTC (itsthefloor.fyi 06:31 UTC). The last four are this page, the same bytes under each of its names; their number is its own size. -->
+<!-- dimensions: each site's front page as served, measured 2026-10-27 06:51 UTC. The last four are this page, the same bytes under each of its names; their number is its own size. Every number here is measured by .github/wall.py, never typed. -->
 <ul>
 <li class="label">
 <p class="t"><a href="https://wevibe.fyi">wevibe.fyi</a></p>
 <p class="m">one word, eleven instructions</p>
 <p>2026</p>
-<p class="d">25,454 bytes</p>
+<p class="d">26,433 bytes</p>
 <p class="l">You don&rsquo;t need the exact number of vibes. Just roughly right.</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://meetingcouldhavebeenan.email">meetingcouldhavebeenan.email</a></p>
 <p class="m">a form, a mailto</p>
 <p>2026</p>
-<p class="d">10,011 bytes</p>
+<p class="d">8,211 bytes</p>
 <p class="l">It still can be.</p>
 </li>
 <li class="label">
@@ -53,31 +53,31 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 <p class="t"><a href="https://itsthefloor.fyi">itsthefloor.fyi</a></p>
 <p class="m">a table, a floor</p>
 <p>2026</p>
-<p class="d">19,536 bytes</p>
+<p class="d">19,602 bytes</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://itsallinthe.name">itsallinthe.name</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,371 bytes</p>
+<p class="d">4,471 bytes</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thepunchlineisinthe.link">thepunchlineisinthe.link</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,371 bytes</p>
+<p class="d">4,471 bytes</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thedomainisthejoke.com">thedomainisthejoke.com</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,371 bytes</p>
+<p class="d">4,471 bytes</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thejokeisthedomain.com">thejokeisthedomain.com</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,371 bytes</p>
+<p class="d">4,471 bytes</p>
 </li>
 </ul>
 <footer class="label">
@@ -93,11 +93,12 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 var names=["itsallinthe.name","thepunchlineisinthe.link","thedomainisthejoke.com","thejokeisthedomain.com"],
     said=["It&rsquo;s all in the name.","The punchline is in the link.","The domain is the joke.","The joke is the domain."],
     i=Math.max(0,names.indexOf(location.hostname.replace(/^www\./,""))),
-    door=names[i],h=document.querySelector("h1"),
-    nav=performance.getEntriesByType("navigation")[0];
+    door=names[i],h=document.querySelector("h1");
 h.innerHTML=said[i];document.title=h.textContent;
 document.getElementById("door").textContent=door;
-document.getElementById("self").textContent=((nav&&nav.decodedBodySize)||document.documentElement.outerHTML.length).toLocaleString("en-US");
+// the page's own size: it asks for itself and counts what comes back (a browser may
+// report only the compressed size)
+fetch(location.pathname).then(r=>r.arrayBuffer()).then(b=>document.getElementById("self").textContent=b.byteLength.toLocaleString("en-US"));
 console.log("You came in by "+door+".");
 </script>
 </body>
