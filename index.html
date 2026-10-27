@@ -6,13 +6,14 @@
 <title>It&rsquo;s all in the name.</title>
 <meta name="description" content="A wall of names. Each one is the joke.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='8' r='1.4' fill='%23171b21'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="tokens.css?4">
 <style>
-body{margin:0;padding:3rem 16px 4rem;background:var(--paper);color:var(--ink);font:19px/1.5 var(--book);font-variant-numeric:oldstyle-nums}
-main{max-width:46rem;margin:0 auto}
+body{margin:0;padding:3rem 16px 1.4rem;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;background:var(--paper);color:var(--ink);font:19px/1.5 var(--book);font-variant-numeric:oldstyle-nums}
+main,.by{width:100%;max-width:46rem;margin:0 auto}
+main{flex:1}
+.by{margin-top:3rem;text-align:right;font-size:.8rem}
 h1{font-weight:400;font-size:1.6rem;margin:0 0 2.6rem}
-.s,.m{font-variant-caps:all-small-caps;letter-spacing:.04em}
-.s{margin:0}
+.m{font-variant-caps:all-small-caps;letter-spacing:.04em}
 ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13rem),1fr));gap:2.6rem 2rem;margin:0;padding:0;list-style:none}
 .label p{margin:0;line-height:1.35}
 .t{font-size:1.1rem}
@@ -20,14 +21,12 @@ ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13rem),1f
 .label .l{margin-top:.5rem}
 a{color:var(--qingbai-accent);text-underline-offset:.15em}
 footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;font-size:.85rem}
-.c{margin-top:.6rem;font-size:.85em}
 </style>
 </head>
 <body>
 <main>
-<p class="s">bonchicbongenre</p>
 <h1>It&rsquo;s all in the name.</h1>
-<!-- dimensions: each site's front page as served, measured 2026-10-27 03:09 UTC -->
+<!-- dimensions: each site's front page as served, measured 2026-10-27 06:10 UTC; itsthefloor.fyi as committed (51a20c5), before it was first served -->
 <ul>
 <li class="label">
 <p class="t"><a href="https://wevibe.fyi">wevibe.fyi</a></p>
@@ -68,17 +67,22 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 <p>2026</p>
 <p class="d">379 bytes</p>
 </li>
+<li class="label">
+<p class="t"><a href="https://itsthefloor.fyi">itsthefloor.fyi</a></p>
+<p class="m">a table, a floor</p>
+<p>2026</p>
+<p class="d">19,536 bytes</p>
+</li>
 </ul>
-<!-- This page stores nothing, sends nothing, and fetches nothing from anywhere else. -->
 <footer class="label">
 <p class="t" id="door">itsallinthe.name</p>
-<p class="m">html, four doors</p>
+<p class="m">html, names</p>
 <p>2026</p>
 <p class="d"><span id="self">&ndash;</span> bytes</p>
 <p class="l">A wall of names.</p>
-<p class="c">Attribution uncertain. Nothing is kept.</p>
 </footer>
 </main>
+<p class="by">by <a href="https://github.com/bonchicbongenre/bonchicbongenre.github.io">bonchicbongenre</a></p>
 <script>
 var names=["itsallinthe.name","thepunchlineisinthe.link","thedomainisthejoke.com","thejokeisthedomain.com"],
     via=new URLSearchParams(location.search).get("via"),

@@ -1,10 +1,11 @@
-House Book and House Typewriter
-===============================
+House Book, House Sans and House Typewriter
+===========================================
 
-These two fonts are modified versions of New Computer Modern 8.1.1, by Antonis
+These three fonts are modified versions of New Computer Modern 8.1.1, by Antonis
 Tsolomitis, itself based on Donald Knuth's Computer Modern.
 
   House Book        from NewCM10-Book.otf      -> house-book.woff2
+  House Sans        from NewCMSans10-Book.otf  -> house-sans.woff2
   House Typewriter  from NewCMMono10-Book.otf  -> house-typewriter.woff2
 
 The original
@@ -29,13 +30,13 @@ What was changed
 2. OpenType layout features kept: kern, liga, locl, smcp, c2sc, onum, lnum, pnum,
    tnum, frac, hist, mark, mkmk (those the original carries). All others removed.
 3. The FontForge metadata tables FFTM and PfEd removed.
-4. Renamed, at the GUST Font License's request: family "House Book" and
-   "House Typewriter", PostScript names HouseBook-Regular and
-   HouseTypewriter-Regular. The name table's description field carries a short
+4. Renamed, at the GUST Font License's request: family "House Book", "House Sans"
+   and "House Typewriter", PostScript names HouseBook-Regular, HouseSans-Regular
+   and HouseTypewriter-Regular. The name table's description field carries a short
    form of this notice.
 5. Converted to WOFF2.
 
-They were made with the fontTools subsetter from the two original files named above.
+They were made with the fontTools subsetter from the three original files named above.
 
 Support
 -------
