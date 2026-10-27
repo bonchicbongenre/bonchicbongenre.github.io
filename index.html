@@ -59,25 +59,25 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 <p class="t"><a href="https://itsallinthe.name">itsallinthe.name</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,168 bytes</p>
+<p class="d">4,371 bytes</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thepunchlineisinthe.link">thepunchlineisinthe.link</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,168 bytes</p>
+<p class="d">4,371 bytes</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thedomainisthejoke.com">thedomainisthejoke.com</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,168 bytes</p>
+<p class="d">4,371 bytes</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thejokeisthedomain.com">thejokeisthedomain.com</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,168 bytes</p>
+<p class="d">4,371 bytes</p>
 </li>
 </ul>
 <footer class="label">
@@ -91,9 +91,11 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 <p class="by">by <a href="https://github.com/bonchicbongenre/bonchicbongenre.github.io">bonchicbongenre</a></p>
 <script>
 var names=["itsallinthe.name","thepunchlineisinthe.link","thedomainisthejoke.com","thejokeisthedomain.com"],
-    here=location.hostname.replace(/^www\./,""),
-    door=names.indexOf(here)>=0?here:names[0],
+    said=["It&rsquo;s all in the name.","The punchline is in the link.","The domain is the joke.","The joke is the domain."],
+    i=Math.max(0,names.indexOf(location.hostname.replace(/^www\./,""))),
+    door=names[i],h=document.querySelector("h1"),
     nav=performance.getEntriesByType("navigation")[0];
+h.innerHTML=said[i];document.title=h.textContent;
 document.getElementById("door").textContent=door;
 document.getElementById("self").textContent=((nav&&nav.decodedBodySize)||document.documentElement.outerHTML.length).toLocaleString("en-US");
 console.log("You came in by "+door+".");
