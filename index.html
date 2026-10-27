@@ -6,13 +6,16 @@
 <title>It&rsquo;s all in the name.</title>
 <meta name="description" content="A wall of names. Each one is the joke.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Ccircle cx='5' cy='8' r='1.4' fill='%23171b21'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="tokens.css?4">
+<link rel="stylesheet" href="tokens.css?5">
 <style>
 body{margin:0;padding:3rem 16px 1.4rem;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;background:var(--paper);color:var(--ink);font:19px/1.5 var(--book);font-variant-numeric:oldstyle-nums}
 main,.by{width:100%;max-width:46rem;margin:0 auto}
 main{flex:1}
 .by{margin-top:3rem;text-align:right;font-size:.8rem}
-h1{font-weight:400;font-size:1.6rem;margin:0 0 2.6rem}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin:0 0 2.6rem}
+h1{font-weight:400;font-size:1.6rem;margin:0}
+button{font:inherit;font-size:.85rem;background:none;border:0;padding:0;color:var(--qingbai-base);cursor:pointer}
+button:focus-visible{outline:1px solid var(--rule);outline-offset:4px}
 .m{font-variant-caps:all-small-caps;letter-spacing:.04em}
 ul{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13rem),1fr));gap:2.6rem 2rem;margin:0;padding:0;list-style:none}
 .label p{margin:0;line-height:1.35}
@@ -25,8 +28,8 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 </head>
 <body>
 <main>
-<h1>It&rsquo;s all in the name.</h1>
-<!-- dimensions: each site's front page as served, measured 2026-10-27 18:54 UTC. The last four are this page, the same bytes under each of its names; their number is its own size. Every number here is measured by .github/wall.py, never typed. -->
+<header><h1>It&rsquo;s all in the name.</h1><button id="theme" hidden>dark</button></header>
+<!-- dimensions: each site's front page as served, measured 2026-10-27 21:49 UTC. The last four are this page, the same bytes under each of its names; their number is its own size. Every number here is measured by .github/wall.py, never typed. -->
 <ul>
 <li class="label">
 <p class="t"><a href="https://wevibe.fyi">wevibe.fyi</a></p>
@@ -53,32 +56,43 @@ footer{border-top:1px solid var(--rule);margin-top:3.4rem;padding-top:1.2rem;fon
 <p class="t"><a href="https://itsthefloor.fyi">itsthefloor.fyi</a></p>
 <p class="m">a table, a floor</p>
 <p>2026</p>
-<p class="d">20,107 bytes</p>
+<p class="d">21,287 bytes</p>
 <p class="l">Turn it.</p>
+</li>
+<li class="label">
+<p class="t"><a href="https://asciimoose.mov">asciimoose.mov</a></p>
+<p class="m">ascii, gravity, light, sound</p>
+<p>2026</p>
+<p class="d">25,875 bytes</p>
+<p class="l">Assume a spherical cow.</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://itsallinthe.name">itsallinthe.name</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,497 bytes</p>
+<p class="d">5,715 bytes</p>
+<p class="l">A wall of names.</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thepunchlineisinthe.link">thepunchlineisinthe.link</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,497 bytes</p>
+<p class="d">5,715 bytes</p>
+<p class="l">A wall of names.</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thedomainisthejoke.com">thedomainisthejoke.com</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,497 bytes</p>
+<p class="d">5,715 bytes</p>
+<p class="l">A wall of names.</p>
 </li>
 <li class="label">
 <p class="t"><a href="https://thejokeisthedomain.com">thejokeisthedomain.com</a></p>
 <p class="m">html, names</p>
 <p>2026</p>
-<p class="d">4,497 bytes</p>
+<p class="d">5,715 bytes</p>
+<p class="l">A wall of names.</p>
 </li>
 </ul>
 <footer class="label">
@@ -100,6 +114,13 @@ document.getElementById("door").textContent=door;
 // the page's own size: it asks for itself and counts what comes back (a browser may
 // report only the compressed size)
 fetch(location.pathname).then(r=>r.arrayBuffer()).then(b=>document.getElementById("self").textContent=b.byteLength.toLocaleString("en-US"));
+// theme: the system's, until the visitor turns it; nothing is kept
+var root=document.documentElement,sys=matchMedia("(prefers-color-scheme: dark)"),T=document.getElementById("theme"),
+    dark=function(){var t=root.getAttribute("data-theme");return t?t=="dark":sys.matches},
+    turn=function(){T.textContent=dark()?"light":"dark"};
+sys.addEventListener("change",function(){if(!root.getAttribute("data-theme"))turn()});
+T.onclick=function(){root.setAttribute("data-theme",dark()?"light":"dark");turn()};
+turn();T.hidden=false;
 console.log("You came in by "+door+".");
 </script>
 </body>
