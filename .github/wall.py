@@ -2,7 +2,8 @@
 
 Every tile on the wall states a size. A site's is its front page as served. The wall's
 own names are all this page, the same bytes under each name, so theirs is this page's
-own size -- a number that is part of what it counts.
+own size -- a number that is part of what it counts. A site whose page carries a list
+of sites (`var sites=[...]`) must list exactly the wall's other names, and may list itself.
 
   python3 .github/wall.py            check every stated size; exit 1 on any mismatch
   python3 .github/wall.py --live     also check each of the wall's names serves this page
@@ -26,6 +27,7 @@ PAGE = ROOT / "index.html"
 UA = {"User-Agent": "wall-check/1.0 (+https://itsallinthe.name)"}
 TILE = re.compile(r'<p class="t"><a href="https://([^"]+)">[^<]*</a></p>.*?<p class="d">([\d,]+) bytes</p>', re.S)
 STAMP = re.compile(r"measured \d{4}-\d\d-\d\d \d\d:\d\d UTC(?: \([^)]*\))?")
+SITES = re.compile(r"var sites=\[([^\]]*)\]")
 
 
 def served(name):
@@ -64,15 +66,25 @@ def main():
     names = names_of(html)
     page = html.encode()
     bad = 0
+    tiles = [m.group(1) for m in TILE.finditer(html)]
     for m in TILE.finditer(html):
         name, stated = m.group(1), int(m.group(2).replace(",", ""))
-        actual = len(page) if name in names else len(served(name))
+        body = page if name in names else served(name)
+        actual = len(body)
         ok = stated == actual
         print("%-30s states %7s  %s %7s  %s" % (name, "{:,}".format(stated), "is its own" if name in names else "served",
                                                  "{:,}".format(actual), "ok" if ok else "WRONG"))
         if not ok:
             bad += wrong("%s states %s bytes; %s %s. Run: python3 .github/wall.py --fix <door repos>" % (
                 name, "{:,}".format(stated), "the page is" if name in names else "it serves", "{:,}".format(actual)))
+        listed = None if name in names else SITES.search(body.decode(errors="replace"))
+        if listed:
+            have = set(listed.group(1).replace('"', "").split(",")) - {name}
+            want = set(tiles) - {name}
+            print("%-30s lists the wall's other names: %s" % (name, "yes" if have == want else "NO"))
+            if have != want:
+                bad += wrong("%s lists sites the wall does not have (%s) or lacks some it has (%s); edit its list" % (
+                    name, ", ".join(sorted(have - want)) or "none", ", ".join(sorted(want - have)) or "none"))
     if "--live" in args:
         for name in names:
             same = served(name) == page

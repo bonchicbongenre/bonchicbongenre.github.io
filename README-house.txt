@@ -1,13 +1,13 @@
-House Book, House Sans and House Typewriter
-===========================================
+House Book
+==========
 
-These four fonts are modified versions of New Computer Modern 8.1.1, by Antonis
-Tsolomitis, itself based on Donald Knuth's Computer Modern.
+The face on these pages is a modified version of New Computer Modern 8.1.1, by
+Antonis Tsolomitis, itself based on Donald Knuth's Computer Modern.
 
-  House Book         from NewCM10-Book.otf        -> house-book.woff2
-  House Book Italic  from NewCM10-BookItalic.otf  -> house-book-italic.woff2
-  House Sans         from NewCMSans10-Book.otf    -> house-sans.woff2
-  House Typewriter   from NewCMMono10-Book.otf    -> house-typewriter.woff2
+  House Book         from NewCM10-Book.otf
+
+It is set inline in each page (index.html and 404.html), as a WOFF2 data URL, so
+that each page is whole in itself.
 
 The original
 ------------
@@ -18,31 +18,29 @@ New Computer Modern is distributed on CTAN at
 
 under the GNU General Public License version 3 or later with the font exception,
 or the GUST Font License (the LaTeX Project Public License 1.3c, with a request
-that derived works be renamed). These modified versions are distributed under the
-GUST Font License. The complete, unmodified originals are always obtainable from the
+that derived works be renamed). This modified version is distributed under the
+GUST Font License. The complete, unmodified original is always obtainable from the
 address above.
 
 What was changed
 ----------------
 
-1. Subset to 280 characters: printable ASCII, Latin-1, general punctuation
-   (U+2010-2027, U+2030-203A), four arrows (U+2190-2193), the Greek alphabet with
-   accented lower case, and the Middle English letters thorn, eth, yogh and wynn.
-2. OpenType layout features kept: kern, liga, locl, smcp, c2sc, onum, lnum, pnum,
-   tnum, frac, hist, mark, mkmk (those the original carries). All others removed.
+1. Subset to printable ASCII, and the en dash and right single quotation mark
+   where a page uses them.
+2. OpenType layout features kept: kern, liga, smcp, c2sc, onum, lnum, pnum, tnum.
+   All others removed.
 3. The FontForge metadata tables FFTM and PfEd removed.
-4. Renamed, at the GUST Font License's request: family "House Book" (Regular and
-   Italic), "House Sans" and "House Typewriter", PostScript names
-   HouseBook-Regular, HouseBook-Italic, HouseSans-Regular and
-   HouseTypewriter-Regular. The name table's description field carries a short
-   form of this notice.
-5. Converted to WOFF2.
+4. Renamed, at the GUST Font License's request: family "House Book", PostScript
+   name HouseBook-Regular. The name table's description field carries a short form
+   of this notice.
+5. Converted to WOFF2, and set in each page as a data URL.
 
-They were made with the fontTools subsetter from the four original files named above.
+It was made with the fontTools subsetter: first from the original file named above
+to 280 characters, then from that to the characters of each page.
 
 Support
 -------
 
 Neither Antonis Tsolomitis nor Donald Knuth, nor anyone else involved with the
-originals, provides any support for these modified versions. Questions about them
+original, provides any support for this modified version. Questions about it
 belong here, not upstream.
